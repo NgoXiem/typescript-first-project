@@ -3,24 +3,29 @@ import {Todo} from "./TodoList";
 
 interface Props {
   todos: Todo[], 
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>,
+  list: Todo[], 
+  setList: React.Dispatch<React.SetStateAction<Todo[]>>,
 }
 
-export const TodoFilter:React.FC<Props> = ({todos, setTodos}) =>  {
+export const TodoFilter:React.FC<Props> = ({todos, setTodos, list, setList}) =>  {
   const undoneItems:Todo[] = todos.filter(todo => todo.done === false);
-  const handleAll = () => {
-    setTodos(todos.map(todo => todo));
-  }
+   const handleAll = () => {
+    setList(todos.map(todo => todo));
+  };
   const handleActive = () => {
     const fiteredActive = todos.filter(todo => todo.done === false)
-    setTodos(fiteredActive)};
+    setList(fiteredActive);
+  };
   const handleCompleted = () => {
     const filteredCompleted = todos.filter(todo => todo.done === true);
-    setTodos(filteredCompleted)};
+    setList(filteredCompleted);
+  };
   const handleClear = () => {
     const filterClear = todos.filter(todo => todo.done === false);
-    setTodos(filterClear)};
-  return <div className="flex justify-between text-sm">
+    setTodos(filterClear);
+  };
+  return <div className="flex justify-between text-sm mt-3">
     <p>{undoneItems.length} items left</p>
     <div className="flex gap-3">
       <button onClick={handleAll}>All</button>
