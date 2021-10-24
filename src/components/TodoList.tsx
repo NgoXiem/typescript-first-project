@@ -11,7 +11,6 @@ export default function TodoList() {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
   const [list, setList] = useState<Todo[]>([]); 
-  const [checked, setChecked] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ export default function TodoList() {
   }
   useEffect(() => {
       setList(todos);
-}, [todos, checked]);
+}, [todos]);
 
   return (
     <div className="border p-2 w-full rounded">
@@ -44,7 +43,7 @@ export default function TodoList() {
       </form>
         {list?.map(todoItem => (
           <div key={todoItem.id} className="flex flex-col text-2xl my-3">
-          <TodoItem id={todoItem.id} name={todoItem.name} done={todoItem.done} todos={todos} setTodos={setTodos} checked={checked} setChecked={setChecked}/>
+          <TodoItem id={todoItem.id} name={todoItem.name} done={todoItem.done} todos={todos} setTodos={setTodos}/>
         </div>
         ))}
       {todos.length> 0 && <TodoFilter todos={todos} setTodos={setTodos} list={list} setList={setList}></TodoFilter>}

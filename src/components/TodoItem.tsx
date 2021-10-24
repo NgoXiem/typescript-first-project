@@ -8,11 +8,9 @@ export interface Props {
     done: boolean
     todos: Todo[], 
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>,
-    checked:boolean,
-    setChecked: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const TodoItem: React.FC<Props> = ({id, name, done, todos, setTodos, checked, setChecked}) =>  {
+export const TodoItem: React.FC<Props> = ({id, name, done, todos, setTodos}) =>  {
   const handleClick = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   }
